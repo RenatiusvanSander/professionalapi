@@ -8,7 +8,13 @@ import java.util.List;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("/carts")
 public class CartsController extends CartApi {
   private static final Logger log = LoggerFactory.getLogger(CartsController.class);
 
@@ -20,9 +26,14 @@ public class CartsController extends CartApi {
   }
 
   @Override
-  public List<Cart> getCartByCustomerId(String customerId) {
-    throw new RuntimeException("Manual Exception thrown");
+  @GetMapping("/{customerId}")
+  public List<Cart> getCartByCustomerId(@PathVariable String customerId) {
+    /*Cart cart = new Cart();
+    cart.setCustomerId("23");
 
+    return List.of(cart);*/
+
+    throw new RuntimeException("Manual Exception thrown");
   }
 
   // Other method implementations (omitted)
