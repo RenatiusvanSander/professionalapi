@@ -1,9 +1,6 @@
 package edu.remad.professionalapi.api.exceptions;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * The error codes for the api

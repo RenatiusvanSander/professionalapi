@@ -1,5 +1,8 @@
 package edu.remad.professionalapi.api.controllers;
 
+import edu.remad.professionalapi.api.exceptions.Error;
+import edu.remad.professionalapi.api.exceptions.ErrorUtils;
+import edu.remad.professionalapi.api.exceptions.MyErrorException;
 import edu.remad.professionalapi.handler.CartApi;
 import edu.remad.professionalapi.model.Cart;
 import edu.remad.professionalapi.model.Item;
@@ -20,20 +23,29 @@ public class CartsController extends CartApi {
 
   @Override
   public List<Item> addCartItemsByCustomerId(String customerId, @Valid Item item) {
-    log.info("Request for customer ID: {}\nItem: {}", customerId, item);
+    log.info(String.format("Request for customer ID: %s\nItem: %s", customerId, item));
 
     return new ArrayList<>();
   }
 
+  /**
+   * Gets customer's cart.
+   *
+   * @param customerId Customer Identifier (required)
+   * @return the customer's cart
+   */
   @Override
   @GetMapping("/{customerId}")
   public List<Cart> getCartByCustomerId(@PathVariable String customerId) {
     /*Cart cart = new Cart();
     cart.setCustomerId("23");
-
     return List.of(cart);*/
 
-    throw new RuntimeException("Manual Exception thrown");
+    Error manualError = ErrorUtils.createError("Internal Server Error","500",500, "api");
+    MyErrorException exception = new MyErrorException();
+    exception.setError(manualError);
+
+    throw exception;
   }
 
   // Other method implementations (omitted)
