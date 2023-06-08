@@ -40,14 +40,12 @@ public class RestApiErrorHandler {
 
   @ResponseBody
   @ExceptionHandler(MyErrorException.class)
-  public ResponseEntity<Error> handleHttpMediaTypeNotSupportedException(HttpServletRequest request,
-      HttpMediaTypeNotSupportedException ex, Locale locale) {
-    Error error = ErrorUtils.createError(ErrorCode.HTTP_MEDIATYPE_NOT_SUPPORTED.getErrorMessageKey(),
-        ErrorCode.HTTP_MEDIATYPE_NOT_SUPPORTED.getErrorCode(),
-        HttpStatus.UNSUPPORTED_MEDIA_TYPE.value(), request.getRequestURL().toString());
+  public ResponseEntity<Error> handleMyErrorException(HttpServletRequest request,
+      MyErrorException ex, Locale locale) {
+    Error error = ex.getError();
     error.setUrl(request.getRequestURL().toString());
     error.setReqMethod(request.getMethod());
-    log.info("HttpMediaTypeNotSupportedException::request.getMethod(): " + request.getMethod());
+    log.info("MyErrorException::request.getMethod(): " + request.getMethod());
 
     return new ResponseEntity<>(error, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
   }
