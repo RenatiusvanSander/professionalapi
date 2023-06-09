@@ -22,7 +22,7 @@ public class Error {
   /**
    * App error code, which is different from HTTP error code.
    */
-  private String errorCode;
+  private ErrorCode errorCode;
 
   /**
    * Short, human-readable summary of the problem.

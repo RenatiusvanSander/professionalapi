@@ -16,7 +16,7 @@ public class ErrorUtils {
    * @param url theurl path
    * @return error, instance of {@link Error}
    */
-  public static Error createError(final String errMsgKey, final String errorCode, final Integer httpStatusCode, final String url) {
+  public static Error createError(final String errMsgKey, final ErrorCode errorCode, final Integer httpStatusCode, final String url) {
     Error error = new Error();
     error.setMessage(errMsgKey);
     error.setErrorCode(errorCode);

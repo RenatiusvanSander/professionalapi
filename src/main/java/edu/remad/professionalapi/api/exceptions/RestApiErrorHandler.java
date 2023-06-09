@@ -31,11 +31,11 @@ public class RestApiErrorHandler {
   @ExceptionHandler(Exception.class)
   public ResponseEntity<Error> handleException(HttpServletRequest request, Exception ex, Locale locale) {
     Error error = ErrorUtils.createError(ErrorCode.GENERIC_ERROR.getErrorMessageKey(),
-            ErrorCode.GENERIC_ERROR.getErrorCode(), HttpStatus.INTERNAL_SERVER_ERROR.value(), request.getRequestURL().toString());
+            ErrorCode.GENERIC_ERROR, HttpStatus.INTERNAL_SERVER_ERROR.value(), request.getRequestURL().toString());
     error.setUrl(request.getRequestURL().toString());
     error.setReqMethod(request.getMethod());
 
-    return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+    return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
   }
 
   @ResponseBody
@@ -47,6 +47,6 @@ public class RestApiErrorHandler {
     error.setReqMethod(request.getMethod());
     log.info("MyErrorException::request.getMethod(): " + request.getMethod());
 
-    return new ResponseEntity<>(error, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+    return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
   }
 }

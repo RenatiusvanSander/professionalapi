@@ -1,6 +1,7 @@
 package edu.remad.professionalapi.api.controllers;
 
 import edu.remad.professionalapi.api.exceptions.Error;
+import edu.remad.professionalapi.api.exceptions.ErrorCode;
 import edu.remad.professionalapi.api.exceptions.ErrorUtils;
 import edu.remad.professionalapi.api.exceptions.MyErrorException;
 import edu.remad.professionalapi.handler.CartApi;
@@ -41,7 +42,7 @@ public class CartsController extends CartApi {
     cart.setCustomerId("23");
     return List.of(cart);*/
 
-    Error manualError = ErrorUtils.createError("Internal Server Error","500",500, "api");
+    Error manualError = ErrorUtils.createError("Internal Server Error", ErrorCode.INTERNAL_SERVER_ERROR,500, "api");
     MyErrorException exception = new MyErrorException();
     exception.setError(manualError);
 
